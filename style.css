@@ -1,9 +1,196 @@
-* {
+html {
+	font-family: 'Roboto Condensed', sans-serif;
+	color: #fff;
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
 }
 
-html {
+body {
+	height: 100vh;
+	background-image: url('img/woodfloor.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+   
+.container {
+	width: 600px;
+	height: 600px;
+	margin: 0 auto;
+	text-align: center;   
+}
+   
+.gameBoard {
+	width: 520px;
+	height: 520px;
+	margin-top: 36px;
+	background-color: #1a1a1a;
+	border-radius: 520px;
+	position: relative;
+	box-shadow: 4px 20px 60px rgba(0, 0, 0, 0.9);
+}
+
+.pad {
+	height: 220px;
+	width: 220px;
+	position: absolute;
+}
+
+.green {
+	left: 27px;
+	top: 27px;
+	border-radius: 240px 0 0 0;
+	background-color: green;
+}
+
+.red {
+	left: 272px;
+	top: 27px;
+	border-radius: 0 240px 0 0;
+	background-color: red;
+}
+
+.yellow {
+	left: 27px;
+	top: 272px;
+	border-radius: 0 0 0 240px;
+	background-color: yellow; 
+}
+
+.blue {
+	left: 272px;
+	top: 272px;
+	border-radius: 0 0 240px 0;
+	background-color: blue;
+}
+
+.controlsContainer {
+	height: 220px;
+	width: 220px;
+	background-color: #fff;
+	border-radius: 220px;
+	position: absolute;
+	top: 124px;
+	left: 130px;
+	border: 20px solid #1a1a1a;
+	z-index: 10;
+	box-shadow: 2px 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+.title {
 	font-family: 'Sarpanch', sans-serif;
+	color: #1a1a1a;
+	font-size: 3rem;
+}
+
+.levelDisplay {
+	background-color: #222;
+	height: 34px;
+	width: 44px;
+	font-size: 1.8rem;	
+	padding: 2px;
+	border-radius: 12px;
+	border: 3px solid #666;
+	display: inline-block;
+	position: absolute;
+	left: 24px;
+}
+
+.start-btn {
+	background-color: rgb(190, 0, 0);
+	height: 32px;
+	width: 32px;
+	border-radius: 50%;
+	border: 6px solid #333;
+	display: inline-block;
+	position: absolute;
+	left: 94px;
+	box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.strict-btn {
+	background-color: #dad600;
+	height: 32px;
+	width: 32px;
+	border-radius: 50%;
+	border: 6px solid #333;
+	display: inline-block;
+	position: absolute;
+	left: 150px;
+	box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.strict-light {	
+	background-color: #420000;
+	/* background-color: #dd0202; */
+	height: 8px;
+	width: 8px;
+	border-radius: 50%;
+	border: 2px solid #333;
+	display: inline-block;
+	position: absolute;
+	left: 195px;
+}
+
+.text {
+	display: inline-block;
+	color: #222;
+	font-weight: 800;
+	font-size: .9rem;
+	position: absolute;
+}
+
+.text:nth-of-type(1) {
+	top: 125px;
+	left: 35px;
+}
+
+.text:nth-of-type(2) {
+	top: 125px;
+	left: 98px;
+}
+
+.text:nth-of-type(3) {
+	top: 125px;
+	left: 152px;
+}
+
+.switchContainer {
+	display: inline-block;
+	width: 42px;
+	height: 22px;
+	border-radius: 6px;
+	border: 3px solid #555;
+	position: absolute;
+	top: 170px;
+	left: 86px;
+	background-color: #222;
+}
+
+.switch-btn {
+	height: 20px;
+	width: 20px;
+	border-radius: 2px;
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	background-color: #666;
+}
+
+.on {
+	position: absolute;
+	top: -12px;
+	left: -24px;
+	font-weight: 800;
+	font-size: .9rem;
+	color: #222;
+}
+
+.off {
+	position: absolute;
+	top: -12px;
+	left: 49px;
+	font-weight: 800;
+	font-size: .9rem;
+	color: #222;
 }
