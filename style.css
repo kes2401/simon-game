@@ -41,28 +41,44 @@ body {
 	left: 27px;
 	top: 27px;
 	border-radius: 240px 0 0 0;
-	background-color: green;
+	background-color: rgb(0, 128, 0);
+}
+
+.green-active {
+	background-color: rgb(0, 198, 0);
 }
 
 .red {
 	left: 272px;
 	top: 27px;
 	border-radius: 0 240px 0 0;
-	background-color: red;
+	background-color: rgb(205, 0, 0);
+}
+
+.red-active {
+	background-color: rgb(255, 20, 20);
 }
 
 .yellow {
 	left: 27px;
 	top: 272px;
 	border-radius: 0 0 0 240px;
-	background-color: yellow; 
+	background-color: rgb(195, 195, 0); 
+}
+
+.yellow-active {
+	background-color: rgb(255, 255, 60); 
 }
 
 .blue {
 	left: 272px;
 	top: 272px;
 	border-radius: 0 0 240px 0;
-	background-color: blue;
+	background-color: rgb(0, 0, 185);
+}
+
+.blue-active {
+	background-color: rgb(30, 50, 255);
 }
 
 .controlsContainer {
@@ -204,4 +220,8 @@ body {
 	font-weight: 800;
 	font-size: .9rem;
 	color: #222;
+}
+
+.light-up {
+	
 }
