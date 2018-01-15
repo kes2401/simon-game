@@ -20,7 +20,7 @@ $(document).ready(function(){
 
     var gameOn = false;
     var inPlay = false;
-    var strict;
+    var strict = false;
     var start;
     var level;
     var shot;  
@@ -47,7 +47,7 @@ $(document).ready(function(){
             window.setTimeout(function(){
                 display.text('01');
                 level = 1;
-                go(level);
+                go();
             }, 2000);
         }
     });
@@ -96,12 +96,11 @@ $(document).ready(function(){
 
     function reset() {
         start = false;
-        strict = false;
         level = 0;
         sequence = '';
     }
 
-    function go(level) {
+    function go() {
         shot = random();
         sequence += shot;
         runSequence(sequence);    
@@ -137,13 +136,13 @@ $(document).ready(function(){
                         window.setTimeout(function(){
                             display.text('01');
                             level = 1;
-                            go(level);
+                            go();
                         }, 2000);
                     }
                     display.text(displayLevel(level));
                 }, 1000);
                 if(level < 20){
-                    go(level);
+                    go();
                 }
             } else {
                 window.setTimeout(function(){
@@ -154,7 +153,7 @@ $(document).ready(function(){
                             display.text('01');
                             level = 1;
                             sequence = '';
-                            go(level);
+                            go();
                         } else {
                             display.text(displayLevel(level));
                             runSequence(sequence);
