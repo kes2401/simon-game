@@ -15,15 +15,20 @@ $(document).ready(function(){
     var sound1 = new Audio('sounds/simonSound2rev.mp3');
     var sound2 = new Audio('sounds/simonSound3rev.mp3');
     var sound3 = new Audio('sounds/simonSound4rev.mp3');
+    var errorSound = new Audio('sounds/wrong.mp3');
+    var winSound = new Audio('sounds/win-jingle.mp3');
 
     var gameOn = false;
     var inPlay = false;
-
+    var strict;
+    var start;
+    var level;  
 
     $('.switch-btn').on('click', function() {
         if(gameOn){
             display.text('');
-            $(this).addClass('button-off');
+            $('.strict-light').removeClass('light-on');
+            $(this).addClass('button-off'); 
             reset();
             gameOn = false;
         } else {
@@ -45,7 +50,6 @@ $(document).ready(function(){
             }, 2000);
         }
     });
-
 
     greenPad.on('click', function(){
         if(inPlay && gameOn){
@@ -79,11 +83,20 @@ $(document).ready(function(){
         }
     }); 
 
+    strictBtn.on('click', function(){
+        if(gameOn && !strict){
+            strict = true;
+            $('.strict-light').addClass('light-on');
+        } else if (gameOn && strict) {
+            strict = false;
+            $('.strict-light').removeClass('light-on');
+        }
+    });
+
     function reset() {
-        var start = false;
-        var strict = false;
-        var count = 0;
-        var level = 0;
+        start = false;
+        strict = false;
+        level = 0;
     }
 
     function go(level) {
@@ -116,37 +129,56 @@ $(document).ready(function(){
             inPlay = false;
             if(sequence === playedSequence){
                 level++;
-                window.setTimeout(function(){
-                    
-                    var displayLevel;
-                    if(level < 10){
-                        displayLevel = '0' + level;
-                    } else if(level >= 10 < 20) {
-                        displayLevel = '' + level;
-                    } else if(level === 20){
-                        displayLevel = 'win';
+                window.setTimeout(function(){             
+                    if(level === 20) {
+                        winSound.play();
                     }
-                    display.text(displayLevel);
+                    display.text(displayLevel(level));
                 }, 1000);
                 if(level < 20){
                     go(level);
                 }
             } else {
-                repeatSequence(sequence);
+                window.setTimeout(function(){
+                    errorSound.play();
+                    display.text('!!');               
+                    window.setTimeout(function() {
+                        if(strict){
+                            display.text('01');
+                            level = 1;
+                            go(level);
+                        } else {
+                            display.text(displayLevel(level));
+                            repeatSequence(sequence);
+                        }
+                    }, 1000);     
+                }, 500);       
             } 
         }
     }
 
+    function displayLevel(level) {
+        var displayLevel;
+        if(level < 10){
+            displayLevel = '0' + level;
+        } else if(level >= 10 < 20) {
+            displayLevel = '' + level;
+        } else if(level === 20){
+            displayLevel = 'win';
+        }
+        return displayLevel;
+    }
+
     function repeatSequence(sequence) {
-        console.log('repeating sequence');
         var x = 0;
         var intervalID = window.setInterval(function(){
             shot = sequence[x];
-            play(shot);
+            play(Number(shot));
             x++;
-            if(x === sequence.length - 1){
+            if(x >= sequence.length){
                 window.clearInterval(intervalID);
-                checkState();
+                playedSequence = '';
+                playerTurn();
             }
         }, 1000);
     }
