@@ -1,0 +1,1 @@
+Alternative version of gameplay where the user is give a completely random sequence on every turn as the level increases.

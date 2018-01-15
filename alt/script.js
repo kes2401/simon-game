@@ -22,8 +22,7 @@ $(document).ready(function(){
     var inPlay = false;
     var strict;
     var start;
-    var level;
-    var shot;  
+    var level;  
 
     $('.switch-btn').on('click', function() {
         if(gameOn){
@@ -98,24 +97,24 @@ $(document).ready(function(){
         start = false;
         strict = false;
         level = 0;
-        sequence = '';
     }
 
     function go(level) {
-        shot = random();
-        sequence += shot;
-        runSequence(sequence);    
+        var shot;
+        sequence = '';
+        playedSequence = ''
+        runSequence(level);    
     }
 
-    function runSequence(sequence) {
+    function runSequence(repititions) {
         var x = 0;
         var intervalID = window.setInterval(function(){
-            shot = sequence[x];
-            play(Number(shot));
+            shot = random();
+            sequence += shot;
+            play(shot);
             x++;
-            if(x >= sequence.length){
+            if(x === repititions){
                 window.clearInterval(intervalID);
-                playedSequence = '';
                 playerTurn();
             }
         }, 1000);
@@ -133,7 +132,6 @@ $(document).ready(function(){
                 window.setTimeout(function(){             
                     if(level === 20) {
                         winSound.play();
-                        sequence = '';
                         window.setTimeout(function(){
                             display.text('01');
                             level = 1;
@@ -153,11 +151,10 @@ $(document).ready(function(){
                         if(strict){
                             display.text('01');
                             level = 1;
-                            sequence = '';
                             go(level);
                         } else {
                             display.text(displayLevel(level));
-                            runSequence(sequence);
+                            repeatSequence(sequence);
                         }
                     }, 1000);     
                 }, 500);       
@@ -175,6 +172,20 @@ $(document).ready(function(){
             displayLevel = 'win';
         }
         return displayLevel;
+    }
+
+    function repeatSequence(sequence) {
+        var x = 0;
+        var intervalID = window.setInterval(function(){
+            shot = sequence[x];
+            play(Number(shot));
+            x++;
+            if(x >= sequence.length){
+                window.clearInterval(intervalID);
+                playedSequence = '';
+                playerTurn();
+            }
+        }, 1000);
     }
 
     function random() {
