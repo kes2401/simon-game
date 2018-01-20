@@ -130,18 +130,19 @@ $(document).ready(function(){
             if(sequence === playedSequence){
                 level++;
                 window.setTimeout(function(){             
-                    if(level === 20) {
+                    if(level === 21) {
                         winSound.play();
                         sequence = '';
+                        displayLevel(level); 
                         window.setTimeout(function(){
                             display.text('01');
                             level = 1;
                             go();
-                        }, 2000);
+                        }, 4000);
                     }
                     display.text(displayLevel(level));
                 }, 1000);
-                if(level < 20){
+                if(level < 21){
                     go();
                 }
             } else {
@@ -168,9 +169,9 @@ $(document).ready(function(){
         var displayLevel;
         if(level < 10){
             displayLevel = '0' + level;
-        } else if(level >= 10 < 20) {
+        } else if(level >= 10 && level < 21) {
             displayLevel = '' + level;
-        } else if(level === 20){
+        } else if(level === 21){
             displayLevel = 'win';
         }
         return displayLevel;
